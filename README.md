@@ -6,6 +6,15 @@
 
 这个仓库是独立项目，可以单独安装、分发和使用，不依赖 GPT 版本的 skill。
 
+当前版本：`v1.0.1`
+
+### 版本控制
+
+- 版本号以 `SKILL.md` frontmatter 里的 `version` 为准。
+- GitHub release tag 使用同名语义版本号，例如 `v1.0.1`。
+- `references/VERSION.md` 和 `scripts/VERSION.md` 必须与 `SKILL.md` 保持一致。
+- 修改脚本、模型映射或对话流程时必须提升版本号。
+
 ### 适合场景
 
 - 复杂海报、长 prompt、多元素画面
@@ -63,6 +72,15 @@ tests/                   单元测试
 `dpxx-gemini-image-skill` is a standalone DPXX image-generation skill for Gemini image models through RootFlowAI. It supports text-to-image, reference-image generation, and image editing.
 
 This repository is self-contained and can be installed, distributed, and used independently from the GPT skill.
+
+Current version: `v1.0.1`
+
+### Versioning
+
+- The source of truth is the `version` field in `SKILL.md` frontmatter.
+- GitHub release tags use the same semantic version, for example `v1.0.1`.
+- `references/VERSION.md` and `scripts/VERSION.md` must match `SKILL.md`.
+- Bump the version whenever scripts, model mapping, or workflow behavior changes.
 
 ### Use Cases
 
