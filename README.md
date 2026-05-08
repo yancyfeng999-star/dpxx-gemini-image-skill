@@ -1,95 +1,33 @@
-# dpxx-gemini-image-skill
+<div align="center">
 
-## 中文说明
+# DPXX Gemini Image Skill
 
-`dpxx-gemini-image-skill` 是一个 DPXX 生图技能项目，专注于通过 RootFlowAI 调用 Gemini 图像模型完成文生图、参考图生图和图片编辑。
+RootFlowAI-powered Gemini image generation workflow for DPXX.
 
-这个仓库是独立项目，可以单独安装、分发和使用，不依赖 GPT 版本的 skill。
+[English](README.md) · [简体中文](README.zh.md) · [Release v1.0.1](https://github.com/yancyfeng999-star/dpxx-gemini-image-skill/releases/tag/v1.0.1)
 
-当前版本：`v1.0.1`
+![Version](https://img.shields.io/badge/version-v1.0.1-blue)
+![Provider](https://img.shields.io/badge/provider-RootFlowAI-111827)
+![Model](https://img.shields.io/badge/model-Gemini-10b981)
+![Python](https://img.shields.io/badge/python-3.x-3776ab)
 
-### 版本控制
+</div>
 
-- 版本号以 `SKILL.md` frontmatter 里的 `version` 为准。
-- GitHub release tag 使用同名语义版本号，例如 `v1.0.1`。
-- `references/VERSION.md` 和 `scripts/VERSION.md` 必须与 `SKILL.md` 保持一致。
-- 修改脚本、模型映射或对话流程时必须提升版本号。
-
-### 适合场景
-
-- 复杂海报、长 prompt、多元素画面
-- 文字要求更高的视觉资产
-- 商品图、社媒图、品牌视觉和创意海报
-- 需要 Gemini 图像模型提示词跟随能力的 DPXX 工作流
-
-### 模型映射
-
-| 分辨率 | Gemini 3.1 Flash | Gemini 3 Pro |
-| --- | --- | --- |
-| 1K | `gemini-3.1-flash-image-count` | `gemini-3-pro-image-count` |
-| 2K | `gemini-3.1-flash-image-hd-count` | `gemini-3-pro-image-hd-count` |
-| 4K | `gemini-3.1-flash-image-4k-count` | `gemini-3-pro-image-4k-count` |
-
-默认建议使用 `gemini-3.1-flash-image-hd-count`。如果需要更复杂的海报或专业视觉资产，可以选择 Gemini 3 Pro 系列。
-
-### 比例规则
-
-支持：
-
-```text
-1:1  3:2  2:3  4:3  3:4  5:4  4:5  16:9  9:16  2:1  1:2  21:9  9:21
-```
-
-Gemini 请求不会发送 `quality` 参数。
-
-### 基本命令
-
-运行前请先按你的部署环境完成 RootFlowAI 鉴权配置。不要把任何私密凭证写入仓库。
-
-```bash
-python3 scripts/generate_image.py \
-  --profile gemini \
-  --model gemini-3.1-flash-image-hd-count \
-  --prompt "A clean product hero image on a plain background." \
-  --size 1:1 \
-  --output-dir ./out \
-  --prefix gemini
-```
-
-### 项目结构
-
-```text
-SKILL.md                 技能主说明
-scripts/                 RootFlowAI 调用脚本
-references/              prompt 模板和案例库
-tests/                   单元测试
-```
-
----
-
-## English
+## Overview
 
 `dpxx-gemini-image-skill` is a standalone DPXX image-generation skill for Gemini image models through RootFlowAI. It supports text-to-image, reference-image generation, and image editing.
 
-This repository is self-contained and can be installed, distributed, and used independently from the GPT skill.
+This repository is independent from the GPT skill. A customer can install this Gemini skill by itself when the preferred workflow needs Gemini image-model prompt following.
 
-Current version: `v1.0.1`
+## Highlights
 
-### Versioning
+- Single-provider Gemini workflow through RootFlowAI
+- Shared DPXX prompt, request, download, and output conventions
+- Text-to-image, reference-image generation, and edit workflows
+- Version-controlled skill metadata, script metadata, and release tags
+- Public documentation with private runtime configuration kept outside the repository
 
-- The source of truth is the `version` field in `SKILL.md` frontmatter.
-- GitHub release tags use the same semantic version, for example `v1.0.1`.
-- `references/VERSION.md` and `scripts/VERSION.md` must match `SKILL.md`.
-- Bump the version whenever scripts, model mapping, or workflow behavior changes.
-
-### Use Cases
-
-- Complex posters, long prompts, and multi-element compositions
-- Visual assets with stronger text-following requirements
-- Product images, social media images, brand visuals, and creative posters
-- DPXX workflows that need Gemini image-model prompt following
-
-### Model Mapping
+## Model Map
 
 | Resolution | Gemini 3.1 Flash | Gemini 3 Pro |
 | --- | --- | --- |
@@ -99,7 +37,7 @@ Current version: `v1.0.1`
 
 Recommended default: `gemini-3.1-flash-image-hd-count`. Use the Gemini 3 Pro series for more complex poster and professional visual work.
 
-### Aspect Ratios
+## Aspect Ratios
 
 Supported:
 
@@ -109,9 +47,9 @@ Supported:
 
 Gemini requests do not send the `quality` parameter.
 
-### Basic Command
+## Quick Start
 
-Configure RootFlowAI authentication through your runtime environment before running. Do not commit private credentials to the repository.
+Configure RootFlowAI authentication through your runtime environment before running. Keep private credentials outside the repository.
 
 ```bash
 python3 scripts/generate_image.py \
@@ -123,10 +61,29 @@ python3 scripts/generate_image.py \
   --prefix gemini
 ```
 
-### Repository Layout
+## Workflow
+
+1. Pick the Gemini model that matches the target resolution and prompt complexity.
+2. Write the prompt using the DPXX prompt rules in `SKILL.md`.
+3. Run `scripts/generate_image.py` with `--profile gemini`.
+4. Review the generated image and rerun with a refined prompt when needed.
+5. Keep version files aligned before publishing workflow changes.
+
+## Versioning
+
+Current version: `v1.0.1`
+
+- `SKILL.md` frontmatter is the source of truth.
+- `references/VERSION.md` and `scripts/VERSION.md` must match `SKILL.md`.
+- GitHub release tags use the same semantic version, for example `v1.0.1`.
+- Bump the version when scripts, model mapping, or user-facing workflow behavior changes.
+
+## Repository Layout
 
 ```text
 SKILL.md                 Skill instructions
+USER_GUIDE.md            User-facing operation guide
+WORKFLOW.md              End-to-end generation workflow
 scripts/                 RootFlowAI request scripts
 references/              Prompt templates and case library
 tests/                   Unit tests
